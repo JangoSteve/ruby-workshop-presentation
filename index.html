@@ -1,366 +1,590 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+    <title>WebSockets and Methods for Real-Time Data Streaming</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="A Presentation on all things WebSockets">
+    <meta name="author" content="Steve Schwartz">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+    document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
 
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
+        <section>
+          <h1>WebSockets</h1>
+          <h3>Methods for Real-Time Data Streaming </h3>
+          <p>
+            <small><a href="http://jangosteve.com">Steve Schwartz</a> / <a href="https://twitter.com/jangosteve">@jangosteve</a></small>
+          </p>
+        </section>
 
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+        <section>
+          <h2>WebSocket</h2>
+          <div class="left-align">
+            <dl>
+              <dt>Protocol</dt><dd>allows for a persistent, full-duplex communication between a client and remote host.</dd>
+              <dt>HTML5</dt><dd>defines a JavaScript API for the WebSocket protocol within the browser, allowing bi-directional communication between the browser and server.</dd>
+            </dl>
+          </div>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+        <section>
+          <section>
+            <h2>Why?</h2>
+            &darr;
+          </section>
+          <section>
+            <p>Web apps need to communicate with the server in real-time</p>
+            &darr;
+          </section>
+          <section>
+            <ul>
+              <li>HTTP based on request/response cycle</li>
+              <li>Had no way to keep connections open until v1.1 (keep-alive)</li>
+              <li>Lots of overhead in request handshake, error checking, and delivery validation</li>
+            </ul>
+            &rarr;
+          </section>
+        </section>
 
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
+        <section>
+          <h2>Can't we already do that?</h2>
+          <div class="fragment">
+            <p>...sort of</p>
+          </div>
+        </section>
 
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
+        <section>
+          <p>Full credit for the following diagrams goes to <a href="http://stackoverflow.com/users/672989/tieme" target="_blank">Tieme</a> from <a href="http://stackoverflow.com/a/12855533/366381" target="_blank">his post on StackOverflow</a></p>
+        </section>
 
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
+        <section>
+          <section>
+            <h2>AJAX Polling</h2>
+            <p>Client sends AJAX request to server, server responds</p>
+            <img src="http://s3.alfajango.com/presentations/websockets/ajax-polling.png" />
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h2>AJAX Polling</h2>
+            <h3>Works when:</h3>
+            <ul>
+              <li>client needs to request data occasionally</li>
+              <li>client needs to send data occasionally</li>
+            </ul>
+            <div class="fragment">
+              <h3>Falls short when:</h3>
+              <ul>
+                <li>client needs to send data often</li>
+                <li>server needs to iniate and send data without client request</li>
+              </ul>
+              <div>&rarr;</div>
+            </div>
+          </section>
+        </section>
 
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+        <section>
+          <section>
+            <h2>AJAX Long-polling</h2>
+            <p>Client sends AJAX request to server, server keeps request open until response available</p>
+            <p>Client immediately sends another long-poll request after receiving response</p>
+            <p>(also see <a href="http://en.wikipedia.org/wiki/Comet_(programming)">Comet</a>)</p>
+            <img src="http://s3.alfajango.com/presentations/websockets/ajax-long-polling.png" />
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h2>AJAX Long-polling</h2>
+            <h3>Works when:</h3>
+            <ul>
+              <li>client needs to request one or a few pieces of data at a time</li>
+              <li>server needs to send one or a few pieces of data occastionally</li>
+            </ul>
+            <div class="fragment">
+              <h3>Falls short when:</h3>
+              <ul>
+                <li>client needs to send data often</li>
+                <li>client needs initiate and send data when available</li>
+                <li>server needs to send data often</li>
+              </ul>
+              <div>&rarr;</div>
+            </div>
+          </section>
+        </section>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
+        <section>
+          <section>
+            <h2>Server-Sent Events (SSE)</h2>
+            <p>Client opens connection with server</p>
+            <p>Server sends data to client as it becomes available</p>
+            <img src="http://s3.alfajango.com/presentations/websockets/sse.png" />
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h2>Server-Sent Events (SSE)</h2>
+            <h3>Works when:</h3>
+            <ul>
+              <li>server needs to send data often</li>
+              <li>browser support for WebSockets can't be relied upon</li>
+            </ul>
+            <div class="fragment">
+              <h3>Falls short when:</h3>
+              <ul>
+                <li>client needs to send any data</li>
+              </ul>
+              <div>&rarr;</div>
+            </div>
+          </section>
+        </section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
+        <section>
+          <section>
+            <h2>WebSockets</h2>
+            <p>Client opens connection with server</p>
+            <p>Client and server send data to each other as data becomes available on either side</p>
+            <img src="http://s3.alfajango.com/presentations/websockets/websockets.png" />
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h2>WebSockets</h2>
+            <h3>Works when:</h3>
+            <ul>
+              <li>server and/or client need to send data often</li>
+              <li>browser support for WebSockets can be relied upon or fallbacks can be used</li>
+            </ul>
+            <div class="fragment">
+              <h3>Falls short when:</h3>
+              <ul>
+                <li>fallbacks can't be relied upon</li>
+              </ul>
+              <div>&rarr;</div>
+            </div>
+          </section>
+        </section>
 
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+        <section>
+          <h2>Important components of the WebSocket spec</h2>
+        </section>
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+        <section>
+          <section>
+            <h2>HTTP handshake</h2>
+            <ul>
+              <li>Initial handshake via HTTP</li>
+              <li>&rarr; upgrade to WebSocket connection</li>
+            </ul>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Request</h3>
+            <pre><code data-trim contenteditable>
+GET /mychat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat
+Sec-WebSocket-Version: 13
+Origin: http://example.com
+            </code></pre>
+            <h3>Response</h3>
+            <pre><code data-trim contenteditable>
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+Sec-WebSocket-Protocol: chat
+            </code></pre>
+            <p>*<a href="http://en.wikipedia.org/wiki/WebSocket#WebSocket_protocol_handshake">WebSocket protocol handshake via Wikipedia</a>.</p>
+          </section>
+        </section>
 
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+        <section>
+          <h2>Full-duplex over TCP</h2>
+          <p>
+            Allows bi-directional communication over standard HTTP ports, 80 &amp; 443
+          </p>
+          <p>
+            (great for existing servers, proxies, and firewalls)
+          </p>
+        </section>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
+        <section>
+          <h2>URI structure</h2>
+          <p>
+            Defines new protocols, <code>ws://</code> and <code>wss://</code> for standard and secure WebSocket connections
+          </p>
+          <p>
+            Rest of WebSockets URI follows standard URI scheme
+          </p>
+          <pre><code data-trim contenteditable>
+var connection = new WebSocket('ws://subdomain.examnple.com/some-endpoint')
+          </code></pre>
+        </section>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> -
-						<a href="?#/themes">Default</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
+        <section>
+          <h2>WebSocket events</h2>
+          <pre><code data-trim contenteditable>
+connection.onopen = function(e) {
+  console.log("Connected");
+};
 
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This lets you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#" class="image navigate-next">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(-90deg);">
-						</a>
-					</section>
-				</section>
+connection.onmessage = function(e) {
+  console.log( "Received: " + e.data);
+};
 
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
+connection.onclose = function(e) {
+  console.log("Connection closed");
+};
+          </code></pre>
+        </section>
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
+        <section>
+          <section>
+            <h2>Cross-domain</h2>
+            <p>
+              WebSockets is cross-domain by default
+            </p>
+            <p>
+              Up to you to optionally restrict domain access on server via <code>Origin</code> header
+            </p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Request</h3>
+            <pre><code data-trim contenteditable>
+GET ws://echo.websocket.org/?encoding=text HTTP/1.1
+Origin: http://websocket.org
+Cookie: __utma=99as
+Connection: Upgrade
+Host: echo.websocket.org
+Sec-WebSocket-Key: uRovscZjNol/umbTt5uKmw==
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+            </code></pre>
+            <h3>Response</h3>
+            <pre><code data-trim contenteditable>
+HTTP/1.1 101 WebSocket Protocol Handshake
+Date: Fri, 10 Feb 2012 17:38:18 GMT
+Connection: Upgrade
+Server: Kaazing Gateway
+Upgrade: WebSocket
+Access-Control-Allow-Origin: http://websocket.org
+Access-Control-Allow-Credentials: true
+Sec-WebSocket-Accept: rLHCkw/SKsO9GAH/ZSFhBATDKrU=
+Access-Control-Allow-Headers: content-type
+            </code></pre>
+            <p>*<a href="http://www.websocket.org/aboutwebsocket.html">WebSocket protocol handshake via websocket.org</a>.</p>
+            <div>&rarr;</div>
+          </section>
+        </section>
 
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+        <section>
+          <section>
+            <h2>Extensibility</h2>
+            <p>
+              Built-in method for defining WebSocket extensions via RFC
+            </p>
+            <p>
+              Current extensions include
+              <a href="http://tools.ietf.org/html/draft-tyoshino-hybi-websocket-perframe-deflate-05">perframe-deflate</a> and
+              <a href="http://tools.ietf.org/html/draft-ietf-hybi-websocket-multiplexing-10">multiplexing</a>
+            </p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <p>Also allows optional subprotocol</p>
+            <pre><code data-trim contenteditable>
+var connection = new WebSocket('ws://html5rocks.websocket.org/echo', ['soap', 'xmpp']);
+            </code></pre>
+            <p>*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
+            <p>
+            <a href="http://www.iana.org/assignments/websocket/websocket.xml">See currently defined subprotocols</a>
+            </p>
+            <div>&rarr;</div>
+          </section>
+        </section>
 
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
-  }
+        <section>
+          <section>
+            <h2>Message data types</h2>
+            <p>
+              Original WebSocket spec allowed for strings
+            </p>
+            <p>
+              Now also allows buffered arrays and blobs
+            </p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Sending String</h3>
+            <pre><code data-trim contenteditable>
+connection.send('your message');
+            </code></pre>
+            <p>*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Sending ArrayBuffer</h3>
+            <pre><code data-trim contenteditable>
+var img = canvas_context.getImageData(0, 0, 400, 320);
+var binary = new Uint8Array(img.data.length);
+for (var i = 0; i < img.data.length; i++) {
+  binary[i] = img.data[i];
 }
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+connection.send(binary.buffer);
+            </code></pre>
+            <p>*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Sending Blob</h3>
+            <pre><code data-trim contenteditable>
+var file = document.querySelector('input[type="file"]').files[0];
+connection.send(file);
+            </code></pre>
+            <p>*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
+            <div>&rarr;</div>
+          </section>
+        </section>
 
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+        <section>
+          <h2>In the real world</h2>
+          <p>(brain-dump)</p>
+        </section>
 
-				<section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
+        <section>
+          <h2>Typical WebSocket architecture</h2>
+          <img src="https://s3.amazonaws.com/s3.alfajango.com/presentations/websockets/websocket-architecture.jpg" />
+            <p>*<a href="http://www.websocket.org/aboutwebsocket.html">via websocket.org</a>.</p>
+        </section>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
+        <section>
+          <section>
+            <h2>Sending JSON</h2>
+            <p>
+              Doesn't support sending/receiving JSON (yet)
+            </p>
+            <p>
+              Can be accomplished by serializing/deserializing
+            </p>
+            <div>&darr;</div>
+          </section>
+          <section>
+            <h3>Server</h3>
+            <pre><code data-trim contenteditable>
+var WebSocketServer = require('ws').Server,
+    wss = new WebSocketServer({port: 8080});
 
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
+wss.on('connection', function(ws) {
+  ws.send(JSON.stringify({
+    attribute: 'connected'
+  }));
+});
+            </code></pre>
+            <h3>Client</h3>
+            <pre><code data-trim contenteditable>
+connection.onmessage = function (e) {
+  var response = JSON.parse(e.data);
+};
+            </code></pre>
+            <div>&rarr;</div>
+          </section>
+        </section>
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
+        <section>
+          <h2>Browser-to-server</h2>
+          <p>
+            Not really meant for server-to-server communication; better off using UDP or some other low-overhead transfer protocol if you control both servers
+          </p>
+          <p>
+            Not meant for browser-to-browser communication; that's what WebRTC is for
+          </p>
+        </section>
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
+        <section>
+          <h2>Use <code>wss</code> in production</h2>
+          <p>
+            Using <code>ws</code> in production can cause WebSockets communication to fail due to invisible proxies that can't do WebSockets
+          </p>
+          <p>
+            Using <code>wss</code> forces browser to issue <code>HTTP_CONNECT</code> statement to proxy server, which sets up tunnel
+          </p>
+        </section>
 
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
+        <section>
+          <h2>Server must support WebSocket</h2>
+          <p>
+            Initial HTTP handshake to server requests WebSocket upgrade
+          </p>
+          <p>
+            Server upgrades connection if it knows how
+          </p>
+          <p>
+            Support can be added to most servers (modules exist for Nginx, Apache, etc.)
+          </p>
+        </section>
 
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
+        <section>
+          <h2>Server application must support WebSocket protocol</h2>
+          <p>
+            Server can be built in any language, which supports event loop
+          </p>
+          <p>
+            Libraries exist for many languages, including Node, Ruby, Python, PHP, etc. (<a href="http://en.wikipedia.org/wiki/WebSocket#Server_side">see list of libraries via Wikipedia</a>)
+          </p>
+        </section>
 
-			</div>
+        <section>
+          <h2>Browser must support WebSocket protocol</h2>
+          <p>
+            All modern browsers (including IE10 support WebSockets)
+          </p>
+          <p>
+            Except Android Browser (but supported in Mobile Chrome, avail on Android >= 4.0, default on Android >= 4.2)
+          </p>
+          <p>
+            <a href="http://en.wikipedia.org/wiki/WebSocket#Browser_support">See browser compatibility via Wikipedia</a>
+          </p>
+        </section>
 
-		</div>
+        <section>
+          <h2>Socket.IO is awesome</h2>
+          <p>
+            Server and client-side implementation (for Node on server side)
+          </p>
+          <p>
+            Abstracts WebSocket communications to automatically fall back to flash streaming or long-polling when necessary (on either server or client)
+          </p>
+          <p>
+            Adds features like heartbeats, timeouts, and disconnection support not provided in WebSocket API
+          </p>
+          <p>
+            <a href="http://socket.io/">See Socket.IO</a>
+          </p>
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+        <section>
+          <h2>Example real-world uses</h2>
+          <ul>
+            <li>real-time chat application</li>
+            <li>multi-player HTML5 game</li>
+            <li>event-based in-page analytics</li>
+            <li>more things</li>
+          </ul>
+        </section>
 
-		<script>
+        <section>
+          <h2>Build a basic WebSocket demo</h2>
+        </section>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+        <section>
+          <h2>Explore a cooler demo</h2>
+        </section>
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        <section>
+          <h2>Resources</h2>
+          <ul>
+            <li><a href="http://tools.ietf.org/html/rfc6455">The WebSocket Protocol IETF draft</a></li>
+            <li><a href="http://www.websocket.org/aboutwebsocket.html">About WebSockets via websocket.org</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/WebSocket">WebSocket via Wikipedia</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP) via Wikipedia</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">Transmission Control Protocol (TCP) via Wikipedia</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">Introduction to WebSockets: Bringing Sockets to the Web via html5rocks.com</a></li>
+            <li><a href="http://tools.ietf.org/html/draft-tyoshino-hybi-websocket-perframe-deflate-05">WebSocket Per-frame DEFLATE Extension via ietf.org</a></li>
+            <li><a href="http://tools.ietf.org/html/draft-ietf-hybi-websocket-multiplexing-10">WebSocket Multiplexing Extension via ietf.org</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/">Stream Updates with Server-Sent Events via html5rocks.com</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/Comet_(programming)">Comet via Wikipedia</a></li>
+            <li><a href="http://stackoverflow.com/questions/11077857/what-are-long-polling-websockets-server-sent-events-sse-and-comet">Differences between long-polling, WebSockets, Server-Sent events, and Comet via stackoverflow.com</a></li>
+            <li><a href="http://www.iana.org/assignments/websocket/websocket.xml">WebSocket Protocol Registries</a></li>
+            <li><a href="http://socket.io/">Socket.IO</a></li>
+            <li><a href="http://www.websocket.org/demos.html">More demos via websocket.org</a></li>
+            <li><a href="http://www.meetup.com/SEM-JS/events/115354852/">SEM.js WebSockets event (this event)</a></li>
+            <li><a href="https://github.com/JangoSteve/websockets-demo">WebSockets Demo (for this presentation)</a></li>
+          </ul>
+        </section>
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+        <section>
+          <h1>FIN</h1>
+          <h3>By Steve Schwartz</h3>
+          <p><a href="https://twitter.com/jangosteve">Twitter (@jangosteve)</a></h3>
+          <p><a href="https://github.com/JangoSteve">Github (JangoSteve)</a></p>
+          <p><a href="http://www.alfajango.com">Alfa Jango</a></p>
+        </section>
 
-		</script>
+      </div>
 
-	</body>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme || 'alfajango', // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        multiplex: {
+          // Example values. Generate your own.
+          secret: Reveal.getQueryHash().secret, // null so the clients do not have control of the master presentation
+          id: '9b240baa42ad3785', // id, obtained from socket.io server
+          url: location.host // Location of your socket.io server
+        },
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+          { src: 'plugin/multiplex/master.js', async: true },
+          { src: 'plugin/multiplex/client.js', async: true },
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
 </html>
