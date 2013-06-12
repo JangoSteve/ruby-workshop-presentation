@@ -7,7 +7,7 @@
  * GLOBAL STYLES
  *********************************************/
 
-@import url(../webfonts/stylesheet.css);
+@import url(../../lib/font/stylesheet.css);
 
 body {
   background: #111111;
