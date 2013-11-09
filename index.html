@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8">
 
-    <title>WebSockets and Methods for Real-Time Data Streaming</title>
+    <title>Ruby Workshop</title>
 
-    <meta name="description" content="A Presentation on all things WebSockets">
+    <meta name="description" content="A workshop of Ruby">
     <meta name="author" content="Steve Schwartz">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,553 +38,206 @@
       <div class="slides">
 
         <section>
-          <h1>WebSockets</h1>
-          <h3 class="center-align">Methods for Real-Time Data Streaming </h3>
+          <h1>Ruby!</h1>
+          <h3 class="center-align">Brain.insert Ruby::Knowledge.new </h3>
+          <p>Day 1</p>
           <p>
             <small><a href="http://jangosteve.com">Steve Schwartz</a> / <a href="https://twitter.com/jangosteve">@jangosteve</a></small>
           </p>
         </section>
 
         <section>
-          <h2>WebSocket</h2>
-          <div class="left-align">
-            <dl>
-              <dt>Protocol</dt><dd>allows for a persistent, full-duplex communication between a client and remote host.</dd>
-              <dt>HTML5</dt><dd>defines a JavaScript API for the WebSocket protocol within the browser, allowing bi-directional communication between the browser and server.</dd>
-            </dl>
-          </div>
+          <section>
+            <h2>Ruby.what_is_it?</h2>
+            <blockquote>
+              "I wanted a scripting language that was more powerful than Perl, and more object-oriented than Python. That's why I decided to design my own language."
+              <br />
+              <br />
+              <cite>--Yukihiro Matsumoto</cite>
+            </blockquote>
 
-          <aside class="notes">
-          </aside>
+            <aside class="notes">
+            </aside>
+            <div class="arrow">&darr;</div>
+          </section>
+          <section>
+            <h2>Ruby.where?</h2>
+
+            <ul>
+              <li><a target="_blank" href="https://www.ruby-lang.org/en/">Ruby on ruby-lang.org</a></li>
+              <li><a target="_blank" href="http://en.wikipedia.org/wiki/Ruby_(programming_language)">Ruby on Wiki</a></li>
+              <li><a target="_blank" href="http://rubyonrails.org/">Ruby on Rails</a></li>
+              <li><a target="_blank" href="http://en.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails on Wiki</a></li>
+            </ul>
+
+            <aside class="notes">
+            </aside>
+            <div class="arrow">&rarr;</div>
+          </section>
         </section>
 
         <section>
           <section>
-            <h2>Why?</h2>
+            <h2>Installation Lab</h2>
             <div class="arrow">&darr;</div>
           </section>
           <section>
-            <p>Web apps need to communicate with the server in real-time</p>
+            <ol>
+              <li><a target="_blank" href="http://brew.sh/">Homebrew</a></li>
+              <li>
+                <a target="_blank" href="https://rvm.io/">RVM</a>
+                <ul>Also...
+                  <li><a target="_blank" href="https://github.com/sstephenson/rbenv">rbenv</a></li>
+                  <li><a target="_blank" href="https://github.com/postmodern/chruby">chruby</a></li>
+                </ul>
+              </li>
+            </ol>
+            <div class="arrow">&rarr;</div>
+          </section>
+        </section>
+
+        <section>
+          <h2>irb</h2>
+          <p>The Interactive Ruby Shell</p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Sharing is caring</h2>
+
+            <p>Rubygems and Git</p>
             <div class="arrow">&darr;</div>
           </section>
           <section>
             <ul>
-              <li>HTTP based on request/response cycle</li>
-              <li>Had no way to keep connections open until v1.1 (keep-alive)</li>
-              <li>Lots of overhead in request handshake, error checking, and delivery validation</li>
+              <li><a target="_blank" href="https://rubygems.org/">Rubygems</a></li>
+              <li><a target="_blank" href="http://en.wikipedia.org/wiki/RubyGems">Rubygems on Wiki</a></li>
+            </ul>
+            <div class="arrow">&darr;</div>
+          </section>
+          <section>
+            <ol>
+              <li><a target="_blank" href="http://brew.sh/">Git</a></li>
+              <li>
+                <a target="_blank" href="https://rvm.io/">Github</a>
+                <ul>Also...
+                  <li><a target="_blank" href="https://bitbucket.org/">Bitbucket</a></li>
+                  <li><a target="_blank" href="https://unfuddle.com/">Unfuddle</a></li>
+                  <li><a target="_blank" href="http://gitlab.org/">Gitlab</a></li>
+                </ul>
+              </li>
+            </ol>
+            <div class="arrow">&rarr;</div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Hosting</h2>
+
+            <p>VPS or Cloud</p>
+            <div class="arrow">&darr;</div>
+          </section>
+          <section>
+            <h2>VPS</h2>
+            <ul>
+              <li>
+                <a target="_blank" href="https://www.digitalocean.com/">Digital Ocean</a>
+                <ul>Also...
+                  <li><a target="_blank" href="https://www.linode.com/">Linode</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="arrow">&darr;</div>
+          </section>
+          <section>
+            <h2>Cloud</h2>
+            <ul>
+              <li>
+                <a target="_blank" href="https://www.heroku.com/">Heroku</a>
+                <ul>Also...
+                  <li><a target="_blank" href="https://www.openshift.com/">OpenShift</a></li>
+                  <li><a target="_blank" href="https://www.cloud66.com/">Cloud 66</a></li>
+                </ul>
+              </li>
             </ul>
             <div class="arrow">&rarr;</div>
           </section>
         </section>
 
         <section>
-          <h2>Can't we already do that?</h2>
-          <div class="fragment">
-            <p>...sort of</p>
-          </div>
-        </section>
+          <section>
+            <h2>Organizing your one-shot program</h2>
 
-        <section>
-          <p>Full credit for the following diagrams goes to <a href="http://stackoverflow.com/users/672989/tieme" target="_blank">Tieme</a> from <a href="http://stackoverflow.com/a/12855533/366381" target="_blank">his post on StackOverflow</a></p>
-        </section>
-
-        <section>
-          <section>
-            <h2>AJAX Polling</h2>
-            <p>Client sends AJAX request to server, server responds</p>
-            <img src="http://s3.alfajango.com/presentations/websockets/ajax-polling.png" />
-            <div>&darr;</div>
+            <p>Objects and stuff</p>
+            <div class="arrow">&darr;</div>
           </section>
           <section>
-            <h2>AJAX Polling</h2>
-            <div class="left-align">
-              <h3>Works when:</h3>
-              <ul>
-                <li>client needs to request data occasionally</li>
-                <li>client needs to send data occasionally</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div class="left-align">
-                <h3>Falls short when:</h3>
-                <ul>
-                  <li>client needs to send data often</li>
-                  <li>server needs to iniate and send data without client request</li>
-                </ul>
-              </div>
-              <div>&rarr;</div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>AJAX Long-polling</h2>
-            <div class="left-align" id="long-polling-about">
-              <p>Client sends AJAX request to server, server keeps request open until response available</p>
-              <p>Client immediately sends another long-poll request after receiving response</p>
-            </div>
-            <img src="http://s3.alfajango.com/presentations/websockets/ajax-long-polling.png" />
-            <p>(also see <a href="http://en.wikipedia.org/wiki/Comet_(programming)">Comet</a>)</p>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h2>AJAX Long-polling</h2>
-            <div class="left-align">
-              <h3>Works when:</h3>
-              <ul>
-                <li>client needs to request one or a few pieces of data at a time</li>
-                <li>server needs to send one or a few pieces of data occastionally</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div class="left-align">
-                <h3>Falls short when:</h3>
-                <ul>
-                  <li>client needs to send data often</li>
-                  <li>client needs initiate and send data when available</li>
-                  <li>server needs to send data often</li>
-                </ul>
-              </div>
-              <div>&rarr;</div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Server-Sent Events (SSE)</h2>
-            <p>Client opens connection with server</p>
-            <p>Server sends data to client as it becomes available</p>
-            <img src="http://s3.alfajango.com/presentations/websockets/sse.png" />
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h2>Server-Sent Events (SSE)</h2>
-            <div class="left-align">
-              <h3>Works when:</h3>
-              <ul>
-                <li>server needs to send data often</li>
-                <li>browser support for WebSockets can't be relied upon</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div class="left-align">
-                <h3>Falls short when:</h3>
-                <ul>
-                  <li>client needs to send any data</li>
-                </ul>
-              </div>
-              <div>&rarr;</div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>WebSockets</h2>
-            <div class="left-align" id="websockets-about">
-              <p>Client opens connection with server</p>
-              <p>Client and server send data to each other as data becomes available on either side</p>
-            </div>
-            <img src="http://s3.alfajango.com/presentations/websockets/websockets.png" />
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h2>WebSockets</h2>
-            <div class="left-align">
-              <h3>Works when:</h3>
-              <ul>
-                <li>server and/or client need to send data often</li>
-                <li>browser support for WebSockets can be relied upon or fallbacks can be used</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div class="left-align">
-                <h3>Falls short when:</h3>
-                <ul>
-                  <li>fallbacks can't be relied upon</li>
-                </ul>
-              </div>
-              <div>&rarr;</div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <h2>Important components of the WebSocket spec</h2>
-        </section>
-
-        <section>
-          <section>
-            <h2>HTTP handshake</h2>
+            <h2>Writing some Ruby</h2>
+            <p>Variables and Assignments, Symbols, Control Structures, Comparisons, Strings, Logging and Debugging</p>
             <ul>
-              <li>Initial handshake via HTTP</li>
-              <li>&rarr; upgrade to WebSocket connection</li>
+              <li><a target="_blank" href="http://ruby-doc.org/">Ruby-Doc.org</a></li>
+              <li><a target="_blank" href="http://www.jstorimer.com/blogs/workingwithcode/7766081-5-reasons-you-should-use-ri-to-read-ruby-documentation">Why ri?</a></li>
             </ul>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Request</h3>
-            <pre><code data-trim contenteditable>
-GET /mychat HTTP/1.1
-Host: server.example.com
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
-Sec-WebSocket-Protocol: chat
-Sec-WebSocket-Version: 13
-Origin: http://example.com
-            </code></pre>
-            <h3>Response</h3>
-            <pre><code data-trim contenteditable>
-HTTP/1.1 101 Switching Protocols
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
-Sec-WebSocket-Protocol: chat
-            </code></pre>
-            <p class="attribution">*<a href="http://en.wikipedia.org/wiki/WebSocket#WebSocket_protocol_handshake">WebSocket protocol handshake via Wikipedia</a>.</p>
+
+            <pre><code>gem install rdoc-data
+
+# Regenerate system docs
+rdoc-data --install
+
+# Regenerate all gem docs
+gem rdoc --all --overwrite
+
+# Regenerate specific gem doc with specific version
+gem rdoc gemname -v 1.2.3 --overwrite</code></pre>
+
+            Or...
+
+            <pre><code>rvm docs generate</code></pre>
+
+            <cite><a target="_blank" href="http://stackoverflow.com/questions/1575373/why-does-my-ruby-ri-tool-not-return-results-in-command-prompt">credit to StackOverflow</a></cite>
+
             <div class="arrow">&rarr;</div>
           </section>
         </section>
 
         <section>
-          <h2>Full-duplex over TCP</h2>
-          <p>
-            Allows bi-directional communication over standard HTTP ports
-          </p>
-          <p>
-            (great for existing servers, proxies, and firewalls, which open 80 &amp; 443)
-          </p>
-        </section>
-
-        <section>
-          <h2>URI structure</h2>
-          <div class="left-align">
-            <p>
-              Defines new protocols, <code>ws://</code> and <code>wss://</code> for standard and secure WebSocket connections
-            </p>
-            <p>
-              Rest of WebSockets URI follows standard URI scheme
-            </p>
-            <pre><code data-trim contenteditable>
-  var connection = new WebSocket('ws://subdomain.examnple.com/some-endpoint')
-            </code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>WebSocket events</h2>
-          <pre><code data-trim contenteditable>
-connection.onopen = function(e) {
-  console.log("Connected");
-};
-
-connection.onmessage = function(e) {
-  console.log( "Received: " + e.data);
-};
-
-connection.onclose = function(e) {
-  console.log("Connection closed");
-};
-          </code></pre>
-        </section>
-
-        <section>
           <section>
-            <h2>Cross-domain</h2>
-            <div class="left-align">
-              <p>
-                WebSockets is cross-domain by default
-              </p>
-              <p>
-                Up to you to optionally restrict domain access on server via <code>Origin</code> header
-              </p>
-            </div>
-            <div>&darr;</div>
+            <h2>Organizing larger programs</h2>
+
+            <p>Structs and stuff</p>
+            <div class="arrow">&darr;</div>
           </section>
           <section>
-            <h3>Request</h3>
-            <pre><code data-trim contenteditable>
-GET ws://echo.websocket.org/?encoding=text HTTP/1.1
-Origin: http://websocket.org
-Cookie: __utma=99as
-Connection: Upgrade
-Host: echo.websocket.org
-Sec-WebSocket-Key: uRovscZjNol/umbTt5uKmw==
-Upgrade: websocket
-Sec-WebSocket-Version: 13
-            </code></pre>
-            <h3>Response</h3>
-            <pre><code data-trim contenteditable>
-HTTP/1.1 101 WebSocket Protocol Handshake
-Date: Fri, 10 Feb 2012 17:38:18 GMT
-Connection: Upgrade
-Server: Kaazing Gateway
-Upgrade: WebSocket
-Access-Control-Allow-Origin: http://websocket.org
-Access-Control-Allow-Credentials: true
-Sec-WebSocket-Accept: rLHCkw/SKsO9GAH/ZSFhBATDKrU=
-Access-Control-Allow-Headers: content-type
-            </code></pre>
-            <p class="attribution">*<a href="http://www.websocket.org/aboutwebsocket.html">WebSocket protocol handshake via websocket.org</a>.</p>
-            <div>&rarr;</div>
+            <h2>Writing some Ruby</h2>
+            <p>classes, blocks, methods, using code from other places</p>
+            <ul>
+              <li><a target="_blank" href="http://www.ruby-doc.org/core-2.0.0/Class.html">Classes</a></li>
+              <li><a target="_blank" href="http://www.ruby-doc.org/core-2.0.0/Module.html">Modules</a></li>
+            </ul>
+
+            <div class="arrow">&darr;</div>
+          </section>
+          <section>
+            <h2>Building a program</h2>
+            <a target="_blank" href="https://github.com/JangoSteve/ruby-graph">Ruby Graph</a>
+            <div class="arrow">&rarr;</div>
           </section>
         </section>
 
         <section>
-          <section>
-            <h2>Extensibility</h2>
-            <div class="left-align">
-              <p>
-                Built-in method for defining WebSocket extensions via RFC
-              </p>
-              <p>
-                Current extensions include
-                <a href="http://tools.ietf.org/html/draft-tyoshino-hybi-websocket-perframe-deflate-05">perframe-deflate</a> and
-                <a href="http://tools.ietf.org/html/draft-ietf-hybi-websocket-multiplexing-10">multiplexing</a>
-              </p>
-            </div>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Optional subprotocol</h3>
-            <pre><code data-trim contenteditable>
-var connection = new WebSocket('ws://html5rocks.websocket.org/echo', ['soap', 'xmpp']);
-            </code></pre>
-            <p class="attribution">*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
-            <p>
-            (<a href="http://www.iana.org/assignments/websocket/websocket.xml">See currently defined subprotocols</a>)
-            </p>
-            <div>&rarr;</div>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Message data types</h2>
-            <p>
-              Original WebSocket spec allowed for strings
-            </p>
-            <p>
-              Now also allows buffered arrays and blobs
-            </p>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Sending String</h3>
-            <pre><code data-trim contenteditable>
-connection.send('your message');
-            </code></pre>
-            <p class="attribution">*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Sending ArrayBuffer</h3>
-            <pre><code data-trim contenteditable>
-var img = canvas_context.getImageData(0, 0, 400, 320);
-var binary = new Uint8Array(img.data.length);
-for (var i = 0; i < img.data.length; i++) {
-  binary[i] = img.data[i];
-}
-connection.send(binary.buffer);
-            </code></pre>
-            <p class="attribution">*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Sending Blob</h3>
-            <pre><code data-trim contenteditable>
-var file = document.querySelector('input[type="file"]').files[0];
-connection.send(file);
-            </code></pre>
-            <p class="attribution">*<a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">via html5rocks</a>.</p>
-            <div>&rarr;</div>
-          </section>
-        </section>
-
-        <section>
-          <h2>In the real world</h2>
-          <p>(brain-dump)</p>
-        </section>
-
-        <section>
-          <h2>Typical WebSocket architecture</h2>
-          <img src="https://s3.amazonaws.com/s3.alfajango.com/presentations/websockets/websocket-architecture.jpg" />
-            <p class="attribution">*<a href="http://www.websocket.org/aboutwebsocket.html">via websocket.org</a>.</p>
-        </section>
-
-        <section>
-          <section>
-            <h2>Sending JSON</h2>
-            <p>
-              Doesn't support sending/receiving JSON (yet)
-            </p>
-            <p>
-              Can be accomplished by serializing/deserializing
-            </p>
-            <div>&darr;</div>
-          </section>
-          <section>
-            <h3>Server</h3>
-            <pre><code data-trim contenteditable>
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({port: 8080});
-
-wss.on('connection', function(ws) {
-  ws.send(JSON.stringify({
-    attribute: 'connected'
-  }));
-});
-            </code></pre>
-            <h3>Client</h3>
-            <pre><code data-trim contenteditable>
-connection.onmessage = function (e) {
-  var response = JSON.parse(e.data);
-};
-            </code></pre>
-            <div>&rarr;</div>
-          </section>
-        </section>
-
-        <section>
-          <h2>Browser-to-server</h2>
-          <div id="browser-to-server" class="left-align">
-            <p>
-              Not really meant for server-to-server communication; better off using UDP or some other low-overhead transfer protocol if you control both servers
-            </p>
-            <p>
-              Not meant for browser-to-browser communication; that's what WebRTC is for
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Proxies</h2>
-          <div class="left-align">
-            <p>
-              Using <code>ws</code> in production can cause WebSockets communication to fail due to invisible proxies that can't do WebSockets
-            </p>
-            <p>
-              Using <code>wss</code> forces browser to issue <code>HTTP_CONNECT</code> statement to proxy server, which sets up tunnel
-            </p>
-            <p>
-              So use <code>wss</code> in production
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Server must support WebSocket</h2>
-          <div class="left-align">
-            <p>
-              Initial HTTP handshake to server requests WebSocket upgrade
-            </p>
-            <p>
-              Server upgrades connection if it knows how
-            </p>
-            <p>
-              Support can be added to most servers (modules exist for Nginx, Apache, etc.)
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Back-end app must support WebSocket</h2>
-          <div class="left-align">
-            <p>
-              Server can be built in any language, which supports event loop
-            </p>
-            <p>
-              Libraries exist for many languages, including Node, Ruby, Python, PHP, etc. (<a href="http://en.wikipedia.org/wiki/WebSocket#Server_side">see list of libraries via Wikipedia</a>)
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Browser must support WebSocket</h2>
-          <div class="left-align">
-            <p>
-              All modern browsers (including IE10 support WebSockets)
-            </p>
-            <p>
-              Except Android Browser (but supported in Mobile Chrome, avail on Android >= 4.0, default on Android >= 4.2)
-            </p>
-            <p>
-              (<a href="http://en.wikipedia.org/wiki/WebSocket#Browser_support">See browser compatibility via Wikipedia</a>)
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Socket.IO is awesome</h2>
-          <div class="left-align">
-            <p>
-              Server and client-side implementation (for Node on server side)
-            </p>
-            <p>
-              Abstracts WebSocket communications to automatically fall back to flash streaming or long-polling when necessary (on either server or client)
-            </p>
-            <p>
-              Adds features like heartbeats, timeouts, and disconnection support not provided in WebSocket API
-            </p>
-            <p>
-              (<a href="http://socket.io/">See Socket.IO</a>)
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Example real-world uses</h2>
-          <ul>
-            <li>real-time chat application</li>
-            <li>multi-player HTML5 game</li>
-            <li>event-based in-page analytics</li>
-            <li>more things</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Build a basic WebSocket demo</h2>
-          <p>
-            <a href="http://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a>
-          </p>
-        </section>
-
-        <section>
-          <h2>Explore a cooler demo</h2>
-          <p>
-            <a href="https://github.com/JangoSteve/websockets-demo" target="_blank">WebSockets SEM.js Demo</a>
-          </p>
-        </section>
-
-        <section>
-          <h2>Resources</h2>
+          <h2>Further Learning</h2>
           <div id="resources">
             <ul>
-              <li><a href="http://tools.ietf.org/html/rfc6455">The WebSocket Protocol IETF draft</a></li>
-              <li><a href="http://www.websocket.org/aboutwebsocket.html">About WebSockets via websocket.org</a></li>
-              <li><a href="http://en.wikipedia.org/wiki/WebSocket">WebSocket via Wikipedia</a></li>
-              <li><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP) via Wikipedia</a></li>
-              <li><a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">Transmission Control Protocol (TCP) via Wikipedia</a></li>
-              <li><a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">Introduction to WebSockets: Bringing Sockets to the Web via html5rocks.com</a></li>
-              <li><a href="http://tools.ietf.org/html/draft-tyoshino-hybi-websocket-perframe-deflate-05">WebSocket Per-frame DEFLATE Extension via ietf.org</a></li>
-              <li><a href="http://tools.ietf.org/html/draft-ietf-hybi-websocket-multiplexing-10">WebSocket Multiplexing Extension via ietf.org</a></li>
-              <li><a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/">Stream Updates with Server-Sent Events via html5rocks.com</a></li>
-              <li><a href="http://en.wikipedia.org/wiki/Comet_(programming)">Comet via Wikipedia</a></li>
-              <li><a href="http://stackoverflow.com/questions/11077857/what-are-long-polling-websockets-server-sent-events-sse-and-comet">Differences between long-polling, WebSockets, Server-Sent events, and Comet via stackoverflow.com</a></li>
-              <li><a href="http://www.iana.org/assignments/websocket/websocket.xml">WebSocket Protocol Registries</a></li>
-              <li><a href="http://socket.io/">Socket.IO</a></li>
-              <li><a href="http://www.websocket.org/demos.html">More demos via websocket.org</a></li>
-              <li><a href="http://www.meetup.com/SEM-JS/events/115354852/">SEM.js WebSockets event (this event)</a></li>
-              <li><a href="https://github.com/JangoSteve/websockets-demo">WebSockets Demo (for this presentation)</a></li>
+              <li><a target="_blank" href="http://rubykoans.com/">Ruby Koans</a> (or <a target="_blank" href="http://rubykoans.com/online">Ruby Koans online</a>)</li>
+              <li><a target="_blank" href="http://tryruby.org/levels/1/challenges/0">Try Ruby</a></li>
+              <li><a target="_blank" href="http://rubymonk.com/">Ruby Monk</a></li>
             </ul>
           </div>
         </section>
 
         <section>
-          <h1>FIN</h1>
+          <h1>Day.first = :finished</h1>
           <div id="end">
             <h3 class="center-align">By Steve Schwartz</h3>
             <p><a href="https://twitter.com/jangosteve">Twitter (@jangosteve)</a></h3>
